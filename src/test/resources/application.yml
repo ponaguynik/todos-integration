@@ -2,8 +2,7 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:todos;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        name:
-        username:
+        username: sa
         password:
         hikari:
             auto-commit: false
@@ -18,10 +17,14 @@ spring:
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
             properties:
                 hibernate.connection.provider_disables_autocommit: true
-                hibernate.cache.use_second_level_cache: false
-                hibernate.cache.use_query_cache: false
                 hibernate.generate_statistics: true
-                hibernate.hbm2ddl.auto: validate
 server:
     port: 10344
     address: localhost
+services:
+    uaa:
+        url: "http://mfo.test.xm-online.com.ua"
+        login: "API_CLIENT"
+        password: "qwerty12345"
+    entity:
+        url: "http://mfo.test.xm-online.com.ua"

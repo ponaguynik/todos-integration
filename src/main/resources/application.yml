@@ -2,15 +2,14 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:todos;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        name:
-        username:
+        username: sa
         password:
         hikari:
             auto-commit: false
     jpa:
         database: h2
         open-in-view: false
-        show-sql: true
+        show-sql: false
         hibernate:
             ddl-auto: create
             naming:
@@ -18,12 +17,15 @@ spring:
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
             properties:
                 hibernate.connection.provider_disables_autocommit: true
-                hibernate.cache.use_second_level_cache: false
-                hibernate.cache.use_query_cache: false
-                hibernate.generate_statistics: false
-                hibernate.hbm2ddl.auto: validate
 server:
     port: 8080
 logging:
     level:
         com.example.todosintegration: debug
+services:
+    uaa:
+        url: "http://mfo.test.xm-online.com.ua"
+        login: "API_CLIENT"
+        password: "qwerty12345"
+    entity:
+        url: "http://mfo.test.xm-online.com.ua"
