@@ -7,7 +7,7 @@ public class CreditorResourceTest extends XmEntityDtoResourceAbstractTest<Credit
     private static final String API_PATH = "/api/creditors";
 
     @Override
-    protected CreditorDTO getTestDto() {
+    protected CreditorDTO buildTestDto() {
         return CreditorDTO.builder()
                 .creditorId(1L)
                 .creditorCode("creditor_code")

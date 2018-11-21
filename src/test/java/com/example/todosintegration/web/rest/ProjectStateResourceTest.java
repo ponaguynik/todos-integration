@@ -4,9 +4,10 @@ import com.example.todosintegration.domain.XmEntityType;
 import com.example.todosintegration.domain.dto.ProjectStateDTO;
 
 public class ProjectStateResourceTest extends XmEntityDtoResourceAbstractTest<ProjectStateDTO> {
+    private static final String API_PATH = "/api/project-states";
 
     @Override
-    protected ProjectStateDTO getTestDto() {
+    protected ProjectStateDTO buildTestDto() {
         return ProjectStateDTO.builder()
                 .stateId(1L)
                 .stateNameEng("state_name")
@@ -20,6 +21,6 @@ public class ProjectStateResourceTest extends XmEntityDtoResourceAbstractTest<Pr
 
     @Override
     protected String apiPath() {
-        return "/api/project-states";
+        return API_PATH;
     }
 }

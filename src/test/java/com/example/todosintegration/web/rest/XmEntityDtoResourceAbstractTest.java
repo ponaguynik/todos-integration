@@ -56,7 +56,7 @@ public abstract class XmEntityDtoResourceAbstractTest<T extends XmEntityDTO> {
     protected XmEntity xmEntity;
     protected T dto;
 
-    protected abstract T getTestDto();
+    protected abstract T buildTestDto();
 
     protected abstract XmEntityType getEntityType();
 
@@ -74,7 +74,7 @@ public abstract class XmEntityDtoResourceAbstractTest<T extends XmEntityDTO> {
         xmEntity = new XmEntity();
         xmEntity.setId(1L);
         xmEntity.setTypeKey(getEntityType().getTypeKey());
-        dto = getTestDto();
+        dto = buildTestDto();
         xmEntity.setData(toJson(dto));
     }
 
