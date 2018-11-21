@@ -1,4 +1,4 @@
-package com.example.todosintegration.service.dto;
+package com.example.todosintegration.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +13,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CreditorDTO implements XmEntityDTO, Serializable {
     private static final long serialVersionUID = 1L;
-    // TODO: 20-Nov-18 enum?
-    public static final String TYPE_KEY = "CONFIGURATIONS.CREDITOR_LIST";
 
     private Long creditorId;
     private String creditorCode;

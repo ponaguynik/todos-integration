@@ -1,6 +1,6 @@
 package com.example.todosintegration.service.mapper;
 
-import com.example.todosintegration.service.dto.XmEntityDTO;
+import com.example.todosintegration.domain.dto.XmEntityDTO;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;

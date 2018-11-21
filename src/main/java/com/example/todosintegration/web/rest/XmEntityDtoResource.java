@@ -1,8 +1,10 @@
+/*
 package com.example.todosintegration.web.rest;
 
+import com.example.todosintegration.domain.XmEntityType;
 import com.example.todosintegration.service.XmEntityDtoService;
 import com.example.todosintegration.service.XmEntityService;
-import com.example.todosintegration.service.dto.CreditorDTO;
+import com.example.todosintegration.domain.dto.CreditorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,15 +29,17 @@ public class XmEntityDtoResource {
         this.xmEntityService = xmEntityService;
     }
 
+    @SuppressWarnings("unchecked")
     @GetMapping(value = "/creditors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<CreditorDTO> getAllCreditors() {
         log.debug("REST request to get all Creditors");
-        return xmEntityDtoService.findAllByTypeKey(CreditorDTO.TYPE_KEY, CreditorDTO.class);
+        return xmEntityDtoService.findAllOfXmEntityType(XmEntityType.CREDITOR, CreditorDTO.class);
     }
 
     @PostMapping(value = "/creditors/load", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void loadCreditors() {
         log.debug("REST request to load Creditors from entity service");
-        xmEntityService.loadByTypeKey(CreditorDTO.TYPE_KEY);
+        xmEntityService.loadOfXmEntityType(XmEntityType.CREDITOR);
     }
 }
+*/

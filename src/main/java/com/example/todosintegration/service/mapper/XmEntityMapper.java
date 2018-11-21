@@ -1,7 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.XmEntity;
-import com.example.todosintegration.service.dto.XmEntityDTO;
+import com.example.todosintegration.domain.dto.XmEntityDTO;
 import com.example.todosintegration.service.mapper.exception.MapperNotFoundException;
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;

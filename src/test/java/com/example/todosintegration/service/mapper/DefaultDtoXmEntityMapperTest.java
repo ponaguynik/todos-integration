@@ -1,7 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.XmEntity;
-import com.example.todosintegration.service.dto.CreditorDTO;
+import com.example.todosintegration.domain.dto.CreditorDTO;
 import com.example.todosintegration.service.mapper.exception.MappingFailedException;
 import org.junit.Before;
 import org.junit.Test;

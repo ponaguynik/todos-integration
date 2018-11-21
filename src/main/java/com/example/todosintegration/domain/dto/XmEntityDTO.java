@@ -1,4 +1,4 @@
-package com.example.todosintegration.service.dto;
+package com.example.todosintegration.domain.dto;
 
 /**
  * Marker interface for all DTOs of the XmEntity

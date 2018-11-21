@@ -3,9 +3,10 @@ package com.example.todosintegration.web.rest;
 import com.example.todosintegration.TodosIntegrationApplication;
 import com.example.todosintegration.client.EntityClient;
 import com.example.todosintegration.domain.XmEntity;
+import com.example.todosintegration.domain.XmEntityType;
+import com.example.todosintegration.domain.dto.XmEntityDTO;
 import com.example.todosintegration.exception.UnableLoadXmEntityException;
 import com.example.todosintegration.repository.XmEntityRepository;
-import com.example.todosintegration.service.dto.CreditorDTO;
 import feign.FeignException;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +29,7 @@ import java.util.List;
 import static com.example.todosintegration.util.TestUtils.asArray;
 import static com.example.todosintegration.util.TestUtils.toJson;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,32 +37,35 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TodosIntegrationApplication.class)
 @Transactional
-public class XmEntityDtoResourceTest {
-
+public abstract class AbstractXmEntityDtoResourceTest<T extends XmEntityDTO> {
     @Autowired
-    private XmEntityDtoResource dtoResource;
+    protected AbstractXmEntityDtoResource<T> resource;
     @Autowired
-    private XmEntityRepository xmEntityRepository;
-
+    protected XmEntityRepository xmEntityRepository;
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+    protected MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @MockBean
-    private EntityClient entityClient;
+    protected EntityClient entityClient;
 
-    private MockMvc mockMvc;
+    protected MockMvc mockMvc;
 
-    private XmEntity xmEntity;
-    private CreditorDTO creditorDTO;
+    protected XmEntity xmEntity;
+    protected T dto;
+
+    protected abstract T getTestDto();
+
+    protected abstract XmEntityType getEntityType();
+
+    protected abstract String apiPath();
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(dtoResource)
+        this.mockMvc = MockMvcBuilders.standaloneSetup(resource)
                 .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -68,34 +73,32 @@ public class XmEntityDtoResourceTest {
     public void initTests() {
         xmEntity = new XmEntity();
         xmEntity.setId(1L);
-        xmEntity.setTypeKey(CreditorDTO.TYPE_KEY);
-        creditorDTO = CreditorDTO.builder()
-                .creditorId(1L)
-                .creditorCode("creditor_code")
-                .creditorName("creditor_name").build();
-        xmEntity.setData(toJson(creditorDTO));
+        xmEntity.setTypeKey(getEntityType().getTypeKey());
+        dto = getTestDto();
+        xmEntity.setData(toJson(dto));
     }
 
     @Test
-    public void testLoadCreditors() throws Exception {
-        doReturn(Collections.singletonList(xmEntity)).when(entityClient).getAllXmEntitiesByTypeKey(eq(CreditorDTO.TYPE_KEY));
+    public void testLoadXmEntityDtos() throws Exception {
+        doReturn(Collections.singletonList(xmEntity))
+                .when(entityClient).getAllXmEntitiesByTypeKey(eq(getEntityType().getTypeKey()));
 
-        mockMvc.perform(post("/api/creditors/load"))
+        mockMvc.perform(post(apiPath() + "/load"))
                 .andExpect(status().isOk());
         xmEntityRepository.flush();
 
-        verify(entityClient).getAllXmEntitiesByTypeKey(eq(CreditorDTO.TYPE_KEY));
-        List<XmEntity> dbXmEntities = xmEntityRepository.findAllByTypeKey(CreditorDTO.TYPE_KEY);
+        verify(entityClient).getAllXmEntitiesByTypeKey(eq(getEntityType().getTypeKey()));
+        List<XmEntity> dbXmEntities = xmEntityRepository.findAllByTypeKey(getEntityType().getTypeKey());
         assertFalse(dbXmEntities.isEmpty());
         assertEquals(xmEntity, dbXmEntities.get(0));
     }
 
     @Test(expected = UnableLoadXmEntityException.class)
-    public void testLoadCreditorsFailedLoadEntitiesFromEntityService() throws Throwable {
+    public void testLoadXmEntityDtosFailedLoadEntitiesFromEntityService() throws Throwable {
         doThrow(mock(FeignException.class)).when(entityClient).getAllXmEntitiesByTypeKey(anyString());
 
         try {
-            mockMvc.perform(post("/api/creditors/load"))
+            mockMvc.perform(post(apiPath() + "/load"))
                     .andExpect(status().is5xxServerError());
         } catch (NestedServletException e) {
             if (e.getCause() != null && e.getCause() instanceof UnableLoadXmEntityException) {
@@ -106,30 +109,30 @@ public class XmEntityDtoResourceTest {
     }
 
     @Test
-    public void testLoadCreditorsLoadEmptyList() throws Throwable {
-        doReturn(Collections.emptyList()).when(entityClient).getAllXmEntitiesByTypeKey(eq(CreditorDTO.TYPE_KEY));
+    public void testLoadXmEntityDtosLoadEmptyList() throws Throwable {
+        doReturn(Collections.emptyList()).when(entityClient).getAllXmEntitiesByTypeKey(eq(getEntityType().getTypeKey()));
 
-        mockMvc.perform(post("/api/creditors/load"))
+        mockMvc.perform(post(apiPath() + "/load"))
                 .andExpect(status().isOk());
 
-        verify(entityClient).getAllXmEntitiesByTypeKey(eq(CreditorDTO.TYPE_KEY));
-        List<XmEntity> dbXmEntities = xmEntityRepository.findAllByTypeKey(CreditorDTO.TYPE_KEY);
+        verify(entityClient).getAllXmEntitiesByTypeKey(eq(getEntityType().getTypeKey()));
+        List<XmEntity> dbXmEntities = xmEntityRepository.findAllByTypeKey(getEntityType().getTypeKey());
         assertTrue(dbXmEntities.isEmpty());
     }
 
     @Test
-    public void testGetAllCreditors() throws Exception {
+    public void testGetAllXmEntityDtos() throws Exception {
         xmEntityRepository.saveAndFlush(xmEntity);
 
-        mockMvc.perform(get("/api/creditors"))
+        mockMvc.perform(get(apiPath()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json(toJson(asArray(creditorDTO))));
+                .andExpect(content().json(toJson(asArray(dto))));
     }
 
     @Test
-    public void testGetAllCreditorsEmptyResult() throws Exception {
-        mockMvc.perform(get("/api/creditors"))
+    public void testGetAllXmEntityDtosEmptyResult() throws Exception {
+        mockMvc.perform(get(apiPath()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(content().json("[]"));

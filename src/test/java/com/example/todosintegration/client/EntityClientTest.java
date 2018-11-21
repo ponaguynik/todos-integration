@@ -1,7 +1,7 @@
 package com.example.todosintegration.client;
 
 import com.example.todosintegration.domain.XmEntity;
-import com.example.todosintegration.service.dto.CreditorDTO;
+import com.example.todosintegration.domain.XmEntityType;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -17,10 +17,10 @@ public class EntityClientTest extends AbstractFeignClientTest {
 
     @Test
     public void testGetAllXmEntities() {
-        List<XmEntity> xmEntities = entityClient.getAllXmEntitiesByTypeKey(CreditorDTO.TYPE_KEY);
+        List<XmEntity> xmEntities = entityClient.getAllXmEntitiesByTypeKey(XmEntityType.CREDITOR.getTypeKey());
 
         assertNotNull(xmEntities);
         assertFalse(xmEntities.isEmpty());
-        assertEquals(CreditorDTO.TYPE_KEY, xmEntities.get(0).getTypeKey());
+        assertEquals(XmEntityType.CREDITOR.getTypeKey(), xmEntities.get(0).getTypeKey());
     }
 }
