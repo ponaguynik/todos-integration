@@ -12,7 +12,8 @@ public enum XmEntityType {
     CREDITOR("CONFIGURATIONS.CREDITOR_LIST", CreditorDTO.class),
     PROJECT_STATE("CONFIGURATIONS.PROJECT_STATE", ProjectStateDTO.class),
     PROJECT_EVENT_TYPE("CONFIGURATIONS.PROJECT_EVENT_TYPES", ProjectEventTypeDTO.class),
-    PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class);
+    PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class),
+    RESPONSIBLE_EXECUTOR("CONFIGURATIONS.RESPONSIBLE_EXECUTOR", ResponsibleExecutorDTO.class);
 
     private final String typeKey;
     private final Class<? extends XmEntityDTO> dtoClass;
