@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TodosIntegrationApplication.class)
 @Transactional
-public abstract class AbstractXmEntityDtoResourceTest<T extends XmEntityDTO> {
+public abstract class XmEntityDtoResourceAbstractTest<T extends XmEntityDTO> {
     @Autowired
     protected AbstractXmEntityDtoResource<T> resource;
     @Autowired

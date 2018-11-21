@@ -11,16 +11,25 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @Profile("test-entity")
-public class EntityClientTest extends AbstractFeignClientTest {
+public class EntityClientTest extends FeignClientAbstractTest {
     @Autowired
     private EntityClient entityClient;
 
     @Test
-    public void testGetAllXmEntities() {
+    public void testGetAllCreditorXmEntities() {
         List<XmEntity> xmEntities = entityClient.getAllXmEntitiesByTypeKey(XmEntityType.CREDITOR.getTypeKey());
 
         assertNotNull(xmEntities);
         assertFalse(xmEntities.isEmpty());
         assertEquals(XmEntityType.CREDITOR.getTypeKey(), xmEntities.get(0).getTypeKey());
+    }
+
+    @Test
+    public void testGetAllProjectStateXmEntities() {
+        List<XmEntity> xmEntities = entityClient.getAllXmEntitiesByTypeKey(XmEntityType.PROJECT_STATE.getTypeKey());
+
+        assertNotNull(xmEntities);
+        assertFalse(xmEntities.isEmpty());
+        assertEquals(XmEntityType.PROJECT_STATE.getTypeKey(), xmEntities.get(0).getTypeKey());
     }
 }

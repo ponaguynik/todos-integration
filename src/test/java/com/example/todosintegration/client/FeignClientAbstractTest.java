@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         webEnvironment = SpringBootTest.WebEnvironment.NONE,
         properties = "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration"
 )
-public abstract class AbstractFeignClientTest {
+public abstract class FeignClientAbstractTest {
     @MockBean
     private XmEntityRepository xmEntityRepository;
 }

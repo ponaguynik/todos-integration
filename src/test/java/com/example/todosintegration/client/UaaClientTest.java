@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 import static org.junit.Assert.assertNotNull;
 
 @Profile("test-uaa")
-public class UaaClientTest extends AbstractFeignClientTest {
+public class UaaClientTest extends FeignClientAbstractTest {
     @Autowired
     private UaaClient uaaClient;
 

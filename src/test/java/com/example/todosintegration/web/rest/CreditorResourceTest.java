@@ -3,7 +3,7 @@ package com.example.todosintegration.web.rest;
 import com.example.todosintegration.domain.XmEntityType;
 import com.example.todosintegration.domain.dto.CreditorDTO;
 
-public class CreditorResourceTest extends AbstractXmEntityDtoResourceTest<CreditorDTO> {
+public class CreditorResourceTest extends XmEntityDtoResourceAbstractTest<CreditorDTO> {
     private static final String API_PATH = "/api/creditors";
 
     @Override
