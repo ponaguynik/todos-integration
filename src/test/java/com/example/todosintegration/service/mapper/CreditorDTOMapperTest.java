@@ -1,6 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.dto.CreditorDTO;
+import com.example.todosintegration.util.TestDataUtils;
 
 public class CreditorDTOMapperTest extends XmEntityDTOMapperAbstractTest<CreditorDTO> {
 
@@ -10,10 +11,7 @@ public class CreditorDTOMapperTest extends XmEntityDTOMapperAbstractTest<Credito
 
     @Override
     protected CreditorDTO buildTestDto() {
-        return CreditorDTO.builder()
-                .creditorId(1L)
-                .creditorCode("creditor_code")
-                .creditorName("Creditor Name").build();
+        return TestDataUtils.buildTestCreditorDTO();
     }
 
     @Override

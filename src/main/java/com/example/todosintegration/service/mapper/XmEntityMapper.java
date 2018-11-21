@@ -7,6 +7,7 @@ import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,9 @@ import java.util.function.Supplier;
 @Component
 public class XmEntityMapper {
     // autowire mappers in order (default implementation must be at the end of the list)
+    //
+    // WARNING: use @Order(1) annotation over a custom implementation so default impl is
+    // injected last one in the list, otherwise default impl will be the first one in the list.
     private final List<DtoXmEntityMapper> mappers;
 
     @Autowired
@@ -54,6 +58,10 @@ public class XmEntityMapper {
 
     private Supplier<MapperNotFoundException> mapperNotFoundFor(Class<?> c) {
         return () -> new MapperNotFoundException("Mapper not found for " + c.getSimpleName());
+    }
+
+    public List<DtoXmEntityMapper> getMappers() {
+        return new ArrayList<>(mappers);
     }
 
 }

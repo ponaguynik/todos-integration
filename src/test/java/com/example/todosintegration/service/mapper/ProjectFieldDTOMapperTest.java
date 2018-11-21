@@ -1,6 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.dto.ProjectFieldDTO;
+import com.example.todosintegration.util.TestDataUtils;
 
 public class ProjectFieldDTOMapperTest extends XmEntityDTOMapperAbstractTest<ProjectFieldDTO> {
 
@@ -10,11 +11,7 @@ public class ProjectFieldDTOMapperTest extends XmEntityDTOMapperAbstractTest<Pro
 
     @Override
     protected ProjectFieldDTO buildTestDto() {
-        return ProjectFieldDTO.builder()
-                .fieldId(1L)
-                .fieldNameEng("field name")
-                .fieldNameUkr("назва")
-                .build();
+        return TestDataUtils.buildTestProjectFieldDTO();
     }
 
     @Override

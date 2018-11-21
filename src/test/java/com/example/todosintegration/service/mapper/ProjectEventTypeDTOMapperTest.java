@@ -1,6 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.dto.ProjectEventTypeDTO;
+import com.example.todosintegration.util.TestDataUtils;
 
 public class ProjectEventTypeDTOMapperTest extends XmEntityDTOMapperAbstractTest<ProjectEventTypeDTO> {
 
@@ -10,11 +11,7 @@ public class ProjectEventTypeDTOMapperTest extends XmEntityDTOMapperAbstractTest
 
     @Override
     protected ProjectEventTypeDTO buildTestDto() {
-        return ProjectEventTypeDTO.builder()
-                .eventTypeCode("type_code")
-                .eventTypeNameEng("type name")
-                .eventTypeNameUkr("назвва типу")
-                .build();
+        return TestDataUtils.buildTestProjectEventTypeDTO();
     }
 
     @Override

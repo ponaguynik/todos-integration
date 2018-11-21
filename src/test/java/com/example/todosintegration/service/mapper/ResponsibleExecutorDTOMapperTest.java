@@ -1,6 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.dto.ResponsibleExecutorDTO;
+import com.example.todosintegration.util.TestDataUtils;
 
 public class ResponsibleExecutorDTOMapperTest extends XmEntityDTOMapperAbstractTest<ResponsibleExecutorDTO> {
 
@@ -10,11 +11,7 @@ public class ResponsibleExecutorDTOMapperTest extends XmEntityDTOMapperAbstractT
 
     @Override
     protected ResponsibleExecutorDTO buildTestDto() {
-        return ResponsibleExecutorDTO.builder()
-                .responsibleExecutorId(1L)
-                .responsibleExecutorNameEng("name")
-                .responsibleExecutorNameUkr("назва")
-                .build();
+        return TestDataUtils.buildTestResponsibleExecutorDTO();
     }
 
     @Override

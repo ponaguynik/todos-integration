@@ -26,8 +26,6 @@ public class XmEntityDtoService {
 
     @Transactional(readOnly = true)
     public <T extends XmEntityDTO> List<T> findAllOfXmEntityType(XmEntityType xmEntityType, Class<T> dtoClass) {
-        Preconditions.checkNotNull(xmEntityType);
-        Preconditions.checkNotNull(dtoClass);
         Preconditions.checkArgument(xmEntityType.getDtoClass() == dtoClass,
                 "XmEntityType dtoClass doesn't match passed dtoClass");
 

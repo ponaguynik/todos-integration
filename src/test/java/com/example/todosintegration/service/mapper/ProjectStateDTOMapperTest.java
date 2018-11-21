@@ -1,6 +1,7 @@
 package com.example.todosintegration.service.mapper;
 
 import com.example.todosintegration.domain.dto.ProjectStateDTO;
+import com.example.todosintegration.util.TestDataUtils;
 
 public class ProjectStateDTOMapperTest extends XmEntityDTOMapperAbstractTest<ProjectStateDTO> {
 
@@ -10,10 +11,7 @@ public class ProjectStateDTOMapperTest extends XmEntityDTOMapperAbstractTest<Pro
 
     @Override
     protected ProjectStateDTO buildTestDto() {
-        return ProjectStateDTO.builder()
-                .stateId(1L)
-                .stateNameEng("state_name")
-                .stateNameUkr("стан проекту").build();
+        return TestDataUtils.buildTestProjectStateDTO();
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.example.todosintegration.domain.XmEntityType;
 import com.example.todosintegration.domain.dto.XmEntityDTO;
 import com.example.todosintegration.exception.UnableLoadXmEntityException;
 import com.example.todosintegration.repository.XmEntityRepository;
+import com.example.todosintegration.util.TestDataUtils;
 import feign.FeignException;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,8 +72,7 @@ public abstract class XmEntityDtoResourceAbstractTest<T extends XmEntityDTO> {
 
     @Before
     public void initTests() {
-        xmEntity = new XmEntity();
-        xmEntity.setId(1L);
+        xmEntity = TestDataUtils.buildTestXmEntity();
         xmEntity.setTypeKey(getEntityType().getTypeKey());
         dto = buildTestDto();
         xmEntity.setData(toJson(dto));
