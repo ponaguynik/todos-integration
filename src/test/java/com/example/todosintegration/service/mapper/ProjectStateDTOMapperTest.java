@@ -12,7 +12,6 @@ public class ProjectStateDTOMapperTest extends XmEntityDTOMapperAbstractTest<Pro
     protected ProjectStateDTO buildTestDto() {
         return ProjectStateDTO.builder()
                 .stateId(1L)
-                .eventTypeCode("event_type_code")
                 .stateNameEng("state_name")
                 .stateNameUkr("стан проекту").build();
     }

@@ -9,7 +9,6 @@ public class ProjectStateResourceTest extends XmEntityDtoResourceAbstractTest<Pr
     protected ProjectStateDTO getTestDto() {
         return ProjectStateDTO.builder()
                 .stateId(1L)
-                .eventTypeCode("event_type_code")
                 .stateNameEng("state_name")
                 .stateNameUkr("стан проекту").build();
     }

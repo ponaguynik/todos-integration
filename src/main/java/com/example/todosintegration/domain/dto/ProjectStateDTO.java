@@ -17,5 +17,4 @@ public class ProjectStateDTO implements XmEntityDTO, Serializable {
     private Long stateId;
     private String stateNameUkr;
     private String stateNameEng;
-    private String eventTypeCode;
 }
