@@ -1,9 +1,6 @@
 package com.example.todosintegration.domain;
 
-import com.example.todosintegration.domain.dto.CreditorDTO;
-import com.example.todosintegration.domain.dto.ProjectEventTypeDTO;
-import com.example.todosintegration.domain.dto.ProjectStateDTO;
-import com.example.todosintegration.domain.dto.XmEntityDTO;
+import com.example.todosintegration.domain.dto.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,7 +11,8 @@ import javax.annotation.Nullable;
 public enum XmEntityType {
     CREDITOR("CONFIGURATIONS.CREDITOR_LIST", CreditorDTO.class),
     PROJECT_STATE("CONFIGURATIONS.PROJECT_STATE", ProjectStateDTO.class),
-    PROJECT_EVENT_TYPE("CONFIGURATIONS.PROJECT_EVENT_TYPES", ProjectEventTypeDTO.class);
+    PROJECT_EVENT_TYPE("CONFIGURATIONS.PROJECT_EVENT_TYPES", ProjectEventTypeDTO.class),
+    PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class);
 
     private final String typeKey;
     private final Class<? extends XmEntityDTO> dtoClass;
