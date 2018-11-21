@@ -1,6 +1,8 @@
 package com.example.todosintegration.domain;
 
 import com.example.todosintegration.domain.dto.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,12 +15,14 @@ public enum XmEntityType {
     PROJECT_STATE("CONFIGURATIONS.PROJECT_STATE", ProjectStateDTO.class),
     PROJECT_EVENT_TYPE("CONFIGURATIONS.PROJECT_EVENT_TYPES", ProjectEventTypeDTO.class),
     PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class),
-    RESPONSIBLE_EXECUTOR("CONFIGURATIONS.RESPONSIBLE_EXECUTOR", ResponsibleExecutorDTO.class);
+    RESPONSIBLE_EXECUTOR("CONFIGURATIONS.RESPONSIBLE_EXECUTOR", ResponsibleExecutorDTO.class),
+    NEWS("NEWS", NewsDTO.class);
 
     private final String typeKey;
     private final Class<? extends XmEntityDTO> dtoClass;
 
     @Nullable
+    @JsonCreator
     public static XmEntityType fromTypeKey(String typeKey) {
         for (XmEntityType xmEntityType : values()) {
             if (xmEntityType.getTypeKey().equals(typeKey)) {
@@ -26,5 +30,10 @@ public enum XmEntityType {
             }
         }
         return null;
+    }
+
+    @JsonValue
+    public String getTypeKey() {
+        return typeKey;
     }
 }
