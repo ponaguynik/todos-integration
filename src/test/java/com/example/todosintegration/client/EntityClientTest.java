@@ -56,4 +56,11 @@ public class EntityClientTest extends FeignClientAbstractTest {
 
         assertNotNull(xmEntities);
     }
+
+    @Test
+    public void testGetAllProjectXmEntities() {
+        List<XmEntity> xmEntities = entityClient.getAllXmEntitiesByTypeKey(XmEntityType.PROJECT.getTypeKey());
+
+        assertNotNull(xmEntities);
+    }
 }

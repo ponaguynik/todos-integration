@@ -20,17 +20,7 @@ public class NewsDTO implements XmEntityDTO, Serializable {
     private String newsTitle;
     private String newsText;
     private String lang;
+    //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private String newsDate;
     private List<DocAttachmentDTO> attachments = new ArrayList<>();
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class DocAttachmentDTO implements Serializable {
-        private Long docId;
-        private String fileName;
-        private String docName;
-        private String fileSize;
-    }
 }

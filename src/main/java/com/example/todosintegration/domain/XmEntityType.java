@@ -16,7 +16,8 @@ public enum XmEntityType {
     PROJECT_EVENT_TYPE("CONFIGURATIONS.PROJECT_EVENT_TYPES", ProjectEventTypeDTO.class),
     PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class),
     RESPONSIBLE_EXECUTOR("CONFIGURATIONS.RESPONSIBLE_EXECUTOR", ResponsibleExecutorDTO.class),
-    NEWS("NEWS", NewsDTO.class);
+    NEWS("NEWS", NewsDTO.class),
+    PROJECT("PROJECTS", ProjectDTO.class);
 
     private final String typeKey;
     private final Class<? extends XmEntityDTO> dtoClass;
@@ -34,6 +35,12 @@ public enum XmEntityType {
 
     @JsonValue
     public String getTypeKey() {
+        return typeKey;
+    }
+
+
+    @Override
+    public String toString() {
         return typeKey;
     }
 }
