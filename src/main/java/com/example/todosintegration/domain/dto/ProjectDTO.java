@@ -31,7 +31,7 @@ public class ProjectDTO implements XmEntityDTO, Serializable {
     private String projectBeginDate;
     //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private String projectEndDate;
-    private Double creditSum;
+    private Long creditSum;
     private String creditCur;
     private String creditNum;
     //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
@@ -48,6 +48,6 @@ public class ProjectDTO implements XmEntityDTO, Serializable {
     private String responsibleExecutorName;
     private String lang;
     private Boolean isArchived;
-    private List<DocAttachmentDTO> docAttachments = new ArrayList<>();
-    private List<ProjectEventDTO> projectEvents = new ArrayList<>();
+    private List<DocAttachmentDTO> attachments = new ArrayList<>();
+    private List<ProjectEventDTO> event = new ArrayList<>();
 }

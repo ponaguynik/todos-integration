@@ -17,7 +17,7 @@ public enum XmEntityType {
     PROJECT_FIELD("CONFIGURATIONS.PROJECT_FIELD_LIST", ProjectFieldDTO.class),
     RESPONSIBLE_EXECUTOR("CONFIGURATIONS.RESPONSIBLE_EXECUTOR", ResponsibleExecutorDTO.class),
     NEWS("NEWS", NewsDTO.class),
-    PROJECT("PROJECTS", ProjectDTO.class);
+    PROJECT("PROJECT", ProjectDTO.class);
 
     private final String typeKey;
     private final Class<? extends XmEntityDTO> dtoClass;

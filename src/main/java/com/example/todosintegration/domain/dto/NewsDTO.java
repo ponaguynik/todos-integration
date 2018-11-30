@@ -22,5 +22,5 @@ public class NewsDTO implements XmEntityDTO, Serializable {
     private String lang;
     //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private String newsDate;
-    private List<DocAttachmentDTO> attachments = new ArrayList<>();
+    private List<DocAttachmentDTO> docAttachments = new ArrayList<>();
 }

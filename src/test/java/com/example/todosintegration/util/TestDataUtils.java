@@ -45,7 +45,7 @@ public class TestDataUtils {
                 .newsText("text")
                 .lang("ua")
                 .newsDate("21-Nov-18")
-                .attachments(Arrays.asList(
+                .docAttachments(Arrays.asList(
                         DocAttachmentDTO.builder()
                                 .docId(1L)
                                 .docName("doc name")
@@ -105,7 +105,7 @@ public class TestDataUtils {
                 .beneficiar("beneficiar")
                 .projectBeginDate("2007-12-04T10:12:30.00Z")
                 .projectEndDate("2007-12-05T10:12:30.00Z")
-                .creditSum(20.12d)
+                .creditSum(20L)
                 .creditCur("credit cur")
                 .creditNum("credit num")
                 .creditDateBegin("2007-12-03T10:16:30.00Z")
@@ -118,7 +118,7 @@ public class TestDataUtils {
                 .responsibleExecutorName("responsible executor name")
                 .lang("ua")
                 .isArchived(true)
-                .docAttachments(Arrays.asList(
+                .attachments(Arrays.asList(
                         DocAttachmentDTO.builder()
                                 .docId(1L)
                                 .docName("doc name")
@@ -130,7 +130,7 @@ public class TestDataUtils {
                                 .fileName("file name 1")
                                 .fileSize("15M").build()
                 ))
-                .projectEvents(Arrays.asList(
+                .event(Arrays.asList(
                         ProjectEventDTO.builder()
                                 .eventCode("event_code")
                                 .eventDesc("event description")
